@@ -1,0 +1,35 @@
+{
+	"options": {
+		"width": 400,
+		"height": 400
+	},
+	"data" : [
+		{
+			"title": "Node 1",
+			"childs": [
+				{
+					"title": "Node 2",
+					"childs": [
+						{
+							"title": "Node 4",
+							"childs": [
+
+							]
+						}
+					]
+				},
+				{
+					"title": "Node 3",
+					"childs": [
+						{
+							"title": "Node 4",
+							"childs": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

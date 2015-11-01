@@ -1,0 +1,9 @@
+<div ng-if="load">
+	<svg ng-width="{{tree.options.width}}" ng-height="{{tree.options.height}}">
+		<g ng-repeat="node in tree.data">
+			<rect width="60" height="20" style="fill:rgb(120,120,120);"></rect>
+			<text x="0" y="10" font-family="Calibri" font-size="12" fill="white" >{{node.title}}</text>
+		</g>
+	  	Sorry, your browser does not support inline SVG.
+	</svg>
+</div>
