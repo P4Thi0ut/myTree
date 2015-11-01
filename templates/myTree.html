@@ -4,8 +4,12 @@
 			<g ng-repeat="node in level track by $index">
 				<line ng-x1="{{node.linesrcx}}" ng-y1="{{node.linesrcy}}" ng-x2="{{node.linedstx}}" ng-y2="{{node.linedsty}}"
 					style="stroke:rgb(120,120,120);stroke-width:2" />
+				<line ng-x1="{{node.linedstx}}" ng-y1="{{node.linedsty}}" ng-x2="{{node.parentx}}" ng-y2="{{node.parenty}}"
+					style="stroke:rgb(120,120,120);stroke-width:2" />
 				<rect width="60" height="20" style="fill:rgb(120,120,120);" ng-y="{{node.posy}}" ng-x="{{node.posx}}"></rect>
 				<text font-family="Calibri" font-size="12" fill="white" ng-y="{{node.posy + 13}}" ng-x="{{node.posx + 10}}">{{node.title}}</text>
+				<line ng-if="node.hasChilds" ng-x1="{{node.blinesrcx}}" ng-y1="{{node.blinesrcy}}" ng-x2="{{node.blinedstx}}" ng-y2="{{node.blinedsty}}"
+					style="stroke:rgb(120,120,120);stroke-width:2" />
 			</g>
 		</g>
 	  	Sorry, your browser does not support inline SVG.
