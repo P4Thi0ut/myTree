@@ -33,58 +33,39 @@ myTree.directive('tree', ['$timeout', function($timeout) {
 
 			var process = function(level, node, index, parentx, parenty) {
 				level = parseInt(level, 10);
-				//var nbrNodes = scope.draw[level].length;
-				var px = /*(scope.tree.options.width / 2) +*/ parseInt(index, 10) * (scope.tree.options.nodeW * 1.5);
-				var py = level * (scope.tree.options.nodeH * 2);
+				node.posx = parseInt(index, 10) * (scope.tree.options.nodeW * 1.5);
+				node.posy = level * (scope.tree.options.nodeH * 2);
 				//top lines
-				var lsrcx = px + (scope.tree.options.nodeW / 2);
-				var lsrcy = py;
-				var ldstx = lsrcx;
-				var ldsty = py - (scope.tree.options.nodeH / 2);
+				node.linesrcx = node.posx + (scope.tree.options.nodeW / 2);
+				node.linesrcy = node.posy;
+				node.linedstx = node.linesrcx;
+				node.linedsty = node.posy - (scope.tree.options.nodeH / 2);
 				//bottom line
-				var blsrcx = px + (scope.tree.options.nodeW / 2);
-				var blsrcy = py + scope.tree.options.nodeH;
-				var bldstx = blsrcx;
-				var bldsty = blsrcy + (scope.tree.options.nodeH / 2);
+				node.blinesrcx = node.posx + (scope.tree.options.nodeW / 2);
+				node.blinesrcy = node.posy + scope.tree.options.nodeH;
+				node.blinedstx = node.blinesrcx;
+				node.blinedsty = node.blinesrcy + (scope.tree.options.nodeH / 2);
 				//circle
-				var cx = px + (scope.tree.options.nodeW / 2);
-				var cy = py + (scope.tree.options.nodeH / 2);
+				node.cx = node.posx + (scope.tree.options.nodeW / 2);
+				node.cy = node.posy + (scope.tree.options.nodeH / 2);
+				node.shape = ("shape" in node) ? node.shape: "square";
+				node.vignette = ("vignette" in node) ? node.vignette : false;
+				node.stroke = ("stroke" in node) ? node.stroke : "plain";
+				node.strokeType = ("strokeType" in node) ? node.strokeType: false;
+				node.hasChilds = (node.childs.length > 0);
+				node.parentx = parentx;
+				node.parenty = parenty;
 
-				var n = {
-					title: node.title,
-					color: node.color,
-					vignette: ("vignette" in node) ? node.vignette : false,
-					stroke: ("stroke" in node) ? node.stroke : "plain",
-					strokeType: ("strokeType" in node) ? "arrow": false,
-					shape: node.shape,
-					posx: px,
-					posy: py,
-					cx: cx,
-					cy: cy,
-					linesrcx: lsrcx,
-					linesrcy: lsrcy,
-					linedstx: ldstx,
-					linedsty: ldsty,
-					blinesrcx: blsrcx,
-					blinesrcy: blsrcy,
-					blinedstx: bldstx,
-					blinedsty: bldsty,
-					hasChilds: (node.childs.length > 0),
-					parentx: parentx,
-					parenty: parenty
-				};
-				if (n.strokeType) {
-					var p1 = n.linesrcx - 5;
-					var p2 = n.linesrcx + 5;
-					var offy = n.linesrcy - 5;
-					n.strPath = n.linesrcx + "," + n.linesrcy + " " + p1 + "," + offy + " " + p2 + "," + offy;
+				if (node.strokeType) {
+					var offy = node.linesrcy - 5;
+					node.strPath = node.linesrcx+","+node.linesrcy+" "+(node.linesrcx - 5)+","+offy+" "+(node.linesrcx + 5)+","+offy;
 				}
 				if (level in scope.draw)
-					scope.draw[level].push(n);
+					scope.draw[level].push(node);
 				else
-					scope.draw[level] = [n];
+					scope.draw[level] = [node];
 				for (c in node.childs)
-					process(level + 1, node.childs[c], index + parseInt(c, 10), bldstx, bldsty);
+					process(level + 1, node.childs[c], index + parseInt(c, 10), node.blinedstx, node.blinedsty);
 			}
 		}
 	}
