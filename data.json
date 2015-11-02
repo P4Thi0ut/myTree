@@ -1,27 +1,52 @@
 {
 	"options": {
 		"width": 450,
-		"height": 400,
-		"nodeH": 100,
-		"nodeW": 160
+		"height": 450,
+		"nodeH": 70,
+		"nodeW": 80
 	},
 	"data" : [
 		{
 			"title": "Node 1",
 			"color": "#95A5A6",
-			"vignette": "http://opensource.org/files/google.png",
+			"shape": "square",
+			"vignette": "https://lh3.googleusercontent.com/-3hRpYIZKbvQ/AAAAAAAAAAI/AAAAAAAAAFM/5VgMpXXvAmM/s46-c-k-no/photo.jpg",
 			"childs": [
 				{
 					"title": "Node 2",
 					"color": "#2ECC71",
+					"shape": "circle",
+					"stroke": "plain",
 					"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
 					"childs": [
+						{
+							"title": "Node 4",
+							"color": "#2ECC71",
+							"shape": "circle",
+							"stroke": "dashed",
+							"strokeType": "arrow",
+							"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
+							"childs": [
+
+							]
+						},{
+							"title": "Node 5",
+							"color": "#2ECC71",
+							"shape": "circle",
+							"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
+							"stroke": "dashed",
+							"childs": [
+
+							]
+						}
 
 					]
 				},
 				{
 					"title": "Node 3",
 					"color": "#E74B3C",
+					"shape": "circle",
+					"strokeType": "arrow",
 					"childs": [
 
 					]

@@ -2,17 +2,25 @@
 	<svg ng-width="{{tree.options.width}}" ng-height="{{tree.options.height}}">
 		<g ng-repeat="level in draw track by $index">
 			<g ng-repeat="node in level track by $index">
-				<line ng-x1="{{node.linesrcx}}" ng-y1="{{node.linesrcy}}" ng-x2="{{node.linedstx}}" ng-y2="{{node.linedsty}}"
+				<line ng-if="node.hasChilds" ng-x1="{{node.blinesrcx}}" ng-y1="{{node.blinesrcy}}" ng-x2="{{node.blinedstx}}" ng-y2="{{node.blinedsty}}"
 					style="stroke:rgb(120,120,120);stroke-width:2" />
 				<line ng-x1="{{node.linedstx}}" ng-y1="{{node.linedsty}}" ng-x2="{{node.parentx}}" ng-y2="{{node.parenty}}"
 					style="stroke:rgb(120,120,120);stroke-width:2" />
-				<rect ng-width="{{tree.options.nodeW}}" ng-height="{{tree.options.nodeH}}"
-					style="fill:{{node.color}};" ng-y="{{node.posy}}" ng-x="{{node.posx}}"></rect>
-				<image ng-if="node.vignette" ng-x="{{node.posx + 10}}" ng-y="{{node.posy + 20}}" width="20" height="20"
-     				xlink:href="" ng-href="{{node.vignette}}"/>
-				<text font-family="Calibri" font-size="12" fill="white" ng-y="{{node.posy + 13}}" ng-x="{{node.posx + 10}}">{{node.title}}</text>
-				<line ng-if="node.hasChilds" ng-x1="{{node.blinesrcx}}" ng-y1="{{node.blinesrcy}}" ng-x2="{{node.blinedstx}}" ng-y2="{{node.blinedsty}}"
+				<line ng-if="node.stroke == 'plain'" ng-x1="{{node.linesrcx}}" ng-y1="{{node.linesrcy}}" ng-x2="{{node.linedstx}}" ng-y2="{{node.linedsty}}"
 					style="stroke:rgb(120,120,120);stroke-width:2" />
+				<path ng-if="node.stroke == 'dashed'" stroke-dasharray="3,1" stroke="rgb(120,120,120)" stroke-width="2px"
+					ng-d="M{{node.linesrcx}} {{node.linesrcy}} L{{node.linedstx}} {{node.linedsty}}"/>
+
+				<polygon ng-if="node.strokeType" ng-points="{{node.strPath}}" style="fill:rgb(120,120,120);stroke:rgb(120,120,120);stroke-width:1" />
+
+				<circle ng-if="node.shape == 'circle'" ng-cx="{{node.cx}}" ng-cy="{{node.cy}}"
+					ng-r="{{tree.options.radius}}" ng-fill="{{node.color}}" />
+				<rect ng-if="node.shape == 'square'" ng-width="{{tree.options.nodeW}}" ng-height="{{tree.options.nodeH}}"
+					style="fill:{{node.color}};" ng-y="{{node.posy}}" ng-x="{{node.posx}}"></rect>
+				<image ng-if="node.vignette" ng-x="{{node.posx + 30}}" ng-y="{{node.posy + 30}}" width="20" height="20"
+     				xlink:href="" ng-href="{{node.vignette}}"/>
+				<text font-family="Calibri" font-size="12" fill="white" ng-y="{{node.posy + 20}}"
+					ng-x="{{node.posx + 25}}">{{node.title}}</text>
 			</g>
 		</g>
 	  	Sorry, your browser does not support inline SVG.
