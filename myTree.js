@@ -1,6 +1,6 @@
 var myTree = angular.module('myTree', []);
 
-angular.forEach(['r', 'x', 'y', 'cx','cy', 'x1', 'x2', 'y1', 'y2', 'fill', 'width', 'height'], function(name) {
+angular.forEach(['r', 'x', 'y', 'x1', 'x2', 'y1', 'y2', 'fill', 'width', 'height', 'xlink', 'href'], function(name) {
   	var ngName = 'ng' + name[0].toUpperCase() + name.slice(1);
   	myTree.directive(ngName, function() {
     	return function(scope, element, attrs) {
@@ -22,28 +22,28 @@ myTree.directive('tree', ['$timeout', function($timeout) {
 			$timeout(function() {
 				scope.tree = ngModelCtrl.$viewValue;
 				for (n in scope.tree.data)
-					process(0, scope.tree.data[n], 0, 0, 0);
+					process(0, scope.tree.data[n], 0, 0, 0, scope.tree.options);
 				scope.load = true;
-				console.info(scope.draw);
-				//console.info(scope.tree);
 			},0);
 
 			var process = function(level, node, index, parentx, parenty) {
-				var px = parseInt(index, 10) * 70;
-				var py = parseInt(level, 10) * 60;
-				//top line
-				var lsrcx = px + 35;
+				var px = parseInt(index, 10) * (scope.tree.options.nodeW * 1.5);
+				var py = parseInt(level, 10) * (scope.tree.options.nodeH * 2);
+				//top lines
+				var lsrcx = px + 30;
 				var lsrcy = py;
 				var ldstx = lsrcx;
-				var ldsty = py - 20;
+				var ldsty = py - (scope.tree.options.nodeH / 2);
 				//bottom line
-				var blsrcx = px + 35;
-				var blsrcy = py + 20;
+				var blsrcx = px + 30;
+				var blsrcy = py + scope.tree.options.nodeH;
 				var bldstx = blsrcx;
-				var bldsty = blsrcy + 10;
+				var bldsty = blsrcy + (scope.tree.options.nodeH / 2);
 
 				var n = {
 					title: node.title,
+					color: node.color,
+					vignette: ("vignette" in node) ? node.vignette : false,
 					posx: px,
 					posy: py,
 					linesrcx: lsrcx,

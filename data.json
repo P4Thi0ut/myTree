@@ -1,47 +1,27 @@
 {
 	"options": {
-		"width": 400,
-		"height": 400
+		"width": 450,
+		"height": 400,
+		"nodeH": 100,
+		"nodeW": 160
 	},
 	"data" : [
 		{
 			"title": "Node 1",
+			"color": "#95A5A6",
+			"vignette": "http://opensource.org/files/google.png",
 			"childs": [
 				{
 					"title": "Node 2",
+					"color": "#2ECC71",
+					"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
 					"childs": [
-						{
-							"title": "Node 4",
-							"childs": [
 
-							]
-						}
 					]
 				},
 				{
 					"title": "Node 3",
-					"childs": [
-						{
-							"title": "Node 5",
-							"childs": [
-								{
-									"title": "Node 7",
-									"childs": [
-
-									]
-								}
-							]
-						},
-						{
-							"title": "Node 6",
-							"childs": [
-
-							]
-						}
-					]
-				},
-				{
-					"title": "Node 8",
+					"color": "#E74B3C",
 					"childs": [
 
 					]
