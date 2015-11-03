@@ -7,12 +7,14 @@
 	},
 	"data" : [
 		{
+			"nextLevel": 2,
 			"title": "Node 1",
 			"color": "#95A5A6",
 			"shape": "square",
 			"vignette": "https://lh3.googleusercontent.com/-3hRpYIZKbvQ/AAAAAAAAAAI/AAAAAAAAAFM/5VgMpXXvAmM/s46-c-k-no/photo.jpg",
 			"childs": [
 				{
+					"nextLevel": 4,
 					"title": "Node 2",
 					"color": "#2ECC71",
 					"shape": "circle",
@@ -20,6 +22,7 @@
 					"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
 					"childs": [
 						{
+							"nextLevel": 0,
 							"title": "Node 4",
 							"color": "#2ECC71",
 							"shape": "circle",
@@ -30,6 +33,7 @@
 
 							]
 						},{
+							"nextLevel": 0,
 							"title": "Node 5",
 							"color": "#2ECC71",
 							"shape": "circle",
@@ -38,17 +42,36 @@
 							"childs": [
 
 							]
-						}
+						},{
+							"nextLevel": 0,
+							"title": "Node 6",
+							"color": "#2ECC71",
+							"shape": "square",
+							"vignette": "http://static1.squarespace.com/static/50de3e1fe4b0a05702aa9cda/t/50eb2245e4b0404f3771bbcb/1357589992287/ss_profile.jpg",
+							"stroke": "dashed",
+							"childs": [
 
+							]
+						}
 					]
 				},
 				{
+					"nextLevel": 4,
 					"title": "Node 3",
 					"color": "#E74B3C",
 					"shape": "circle",
 					"strokeType": "arrow",
 					"childs": [
+						{
+							"nextLevel": 0,
+							"title": "Node 7",
+							"color": "#E74B3C",
+							"shape": "circle",
+							"strokeType": "arrow",
+							"childs": [
 
+							]
+						}
 					]
 				}
 			]

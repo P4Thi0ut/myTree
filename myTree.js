@@ -21,19 +21,26 @@ myTree.directive('tree', ['$timeout', function($timeout) {
 		link: function(scope, element, attributes, ngModelCtrl) {
 			scope.load = false;
 			scope.draw = {};
+			scope.nth = {};
 			$timeout(function() {
 				scope.tree = ngModelCtrl.$viewValue;
 				scope.tree.options.radius = (scope.tree.options.nodeW < scope.tree.options.nodeH) ?
 					(scope.tree.options.nodeW / 2):(scope.tree.options.nodeH / 2);
 				for (n in scope.tree.data)
-					process(0, scope.tree.data[n], 0, 0, 0, scope.tree.options);
+					process(0, scope.tree.data[n], 0, 0, 1);
 				scope.load = true;
 				//console.info(scope.draw);
 			},0);
 
-			var process = function(level, node, index, parentx, parenty) {
+			var compute = function(nodes, index) {
+				var gap = parseInt((scope.tree.options.width - (scope.tree.options.nodeW * nodes)) / (nodes + 1), 10);
+				return (index * gap) + ((index - 1) * scope.tree.options.nodeW);
+			}
+
+			var process = function(level, node, parentx, parenty, siblings) {
 				level = parseInt(level, 10);
-				node.posx = parseInt(index, 10) * (scope.tree.options.nodeW * 1.5);
+				scope.nth[level] = (level in scope.nth) ? scope.nth[level] + 1: 1;
+				node.posx = compute(siblings, scope.nth[level]);
 				node.posy = level * (scope.tree.options.nodeH * 2);
 				//top lines
 				node.linesrcx = node.posx + (scope.tree.options.nodeW / 2);
@@ -65,7 +72,7 @@ myTree.directive('tree', ['$timeout', function($timeout) {
 				else
 					scope.draw[level] = [node];
 				for (c in node.childs)
-					process(level + 1, node.childs[c], index + parseInt(c, 10), node.blinedstx, node.blinedsty);
+					process(level + 1, node.childs[c], node.blinedstx, node.blinedsty, node.nextLevel);
 			}
 		}
 	}
